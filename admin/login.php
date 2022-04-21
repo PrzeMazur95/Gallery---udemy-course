@@ -1,4 +1,4 @@
-<?php require_once("init.php"); ?>
+<?php require_once("includes/header.php"); ?>
 
 <?php
 
@@ -12,6 +12,9 @@ if(isset($_POST['submit'])){
 
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
+
+
+    $user_found = User::verify_user($username, $password);
 
 
     if($user_found){
