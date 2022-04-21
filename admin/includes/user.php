@@ -38,27 +38,22 @@ class User {
 
         return $the_object_array;
 
-    }
+    } 
 
 
-    public static function verify_user($username, $password){
+    //DO POPRAWY !!!! loguje jedynie pierwszego uytkownika problem w zpytaniu SQL SELECT * FROM users WHERE nickname = {$name} AND pass = {$pwd}. 
+
+    public static function verify_user($name, $pwd){
 
         global $database;
-        $username = $database->escape_string($username);
-        $password = $database->escape_string($password);
+        $name = $database->escape_string($name);
+        $pwd = $database->escape_string($pwd);
 
 
-        $sql = "SELECT * FROM users WHERE ";
-        $sql .="username = '{$username}' ";
-        $sql .="AND password = '{$password}' ";
-        $sql .="LIMIT 1";
-
-
-        $the_result_array = self::find_this_query($sql);
+        
+        $the_result_array = self::find_this_query("SELECT * FROM users WHERE id = 1");
 
         return !empty($the_result_array) ? array_shift($the_result_array) : false;
-
-
 
     }
 
