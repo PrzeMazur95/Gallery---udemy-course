@@ -2,7 +2,9 @@
 
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
-define('SITE_ROOT', DS . 'Users' . DS . 'apple' . DS . '.bitnami' . DS . 'stackman' . DS . 'machines'  . DS . 'xampp' . DS . 'volumes' . DS . 'root' . DS . 'htdocs' . DS . 'Gallery');
+define('SITE_ROOT', DS . 'opt' . DS . 'lampp' . DS . 'htdocs' . DS . 'Gallery');
+
+// define('SITE_ROOT', DS . 'Users' . DS . 'apple' . DS . '.bitnami' . DS . 'stackman' . DS . 'machines'  . DS . 'xampp' . DS . 'volumes' . DS . 'root' . DS . 'htdocs' . DS . 'Gallery');
 // /Users/apple/.bitnami/stackman/machines/xampp/volumes/root/htdocs/Gallery
 
 defined('INCLUDES_PATH') ? null : define('INCLUDES_PATH', SITE_ROOT.DS.'admin'.DS.'includes');
