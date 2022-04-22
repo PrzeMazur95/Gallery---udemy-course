@@ -7,6 +7,27 @@ redirect("login.php");
 
 } 
 
+$message="";
+
+if(isset($_POST['submit'])){
+
+    $photo = new Photo();
+
+    $photo->tittle = $_POST['tittle'];
+    $photo->set_file($_FILES['file_upload']);
+
+    if($photo->save()){
+
+        $message = "Photo uploaded succesfully";
+
+    } else {
+
+        $message = join("<br>", $photo->custom_errors);
+
+    }   
+
+}
+
 ?>
 
         <!-- Navigation -->
@@ -38,6 +59,11 @@ redirect("login.php");
                 
                 <div class="col-md-6">
 
+                <?php
+
+                echo $message;
+
+                ?>
                     <form action="upload.php" method="post" enctype="multipart/form-data">
 
                         <div class="form-group">

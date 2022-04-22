@@ -18,7 +18,7 @@ class Photo extends Db_object {
     public $upload_errors_array = array(
 
         UPLOAD_ERR_OK          => "There is no error",
-        UPLOAD_ERR_INT_SIZE    => "File exceeds the upload_max_filesize",
+        UPLOAD_ERR_INI_SIZE    => "File exceeds the upload_max_filesize",
         UPLOAD_ERR_FORM_SIZE   => "File exceeds the max_file_size",
         UPLOAD_ERR_PARTIAL     => "File was only partially uploaded",
         UPLOAD_ERR_NO_FILE     => "No file was uploaded",
@@ -37,7 +37,7 @@ class Photo extends Db_object {
 
         } elseif($file['error'] !=0){
 
-            $this->errors[] = $this->upload_errors_array[$file['error']];
+            $this->custom_errors[] = $this->upload_errors_array[$file['error']];
             return false;
 
         } else {
@@ -60,7 +60,7 @@ class Photo extends Db_object {
 
         } else {
 
-            if(!empty($this->errors)) {
+            if(!empty($this->custom_errors)) {
 
                 return false;
 
@@ -68,7 +68,7 @@ class Photo extends Db_object {
 
             if(empty($this->filename) || empty($this->tmp_path)){
 
-                $this->errors[] = "The file was not available";
+                $this->custom_errors[] = "The file was not available";
                 return false;
 
             }
@@ -77,7 +77,7 @@ class Photo extends Db_object {
 
             if(file_exists($target_path)){
 
-                $this->errors[] = "The file {$this->filename} already exists";
+                $this->custom_errors[] = "The file {$this->filename} already exists";
                 return false;
 
             }
@@ -93,7 +93,7 @@ class Photo extends Db_object {
 
             } else {
 
-                $this->errors[] = "The file directory probably does not have permission";
+                $this->custom_errors[] = "The file directory probably does not have permission";
                 return false;
 
             }
