@@ -24,7 +24,7 @@ class Database {
 
     public function query($sql){
 
-        $sql = $this->escape_string($sql);
+        // $sql = $this->escape_string($sql);
 
         $result = $this->connection->query($sql);
 
@@ -48,6 +48,12 @@ class Database {
 
         $escaped_string = $this->connection->real_escape_string($string);
         return $escaped_string;
+    }
+
+    public function the_insert_id(){
+
+        return mysqli_insert_id($this->connection);
+
     }
 
 

@@ -41,7 +41,6 @@ class User {
     } 
 
 
-    //DO POPRAWY !!!! loguje jedynie pierwszego uytkownika problem w zpytaniu SQL SELECT * FROM users WHERE nickname = {$name} AND pass = {$pwd}. 
 
     public static function verify_user($name, $pwd){
 
@@ -49,9 +48,9 @@ class User {
         $name = $database->escape_string($name);
         $pwd = $database->escape_string($pwd);
 
-
         
-        $the_result_array = self::find_this_query("SELECT * FROM users WHERE id = 1");
+
+        $the_result_array = self::find_this_query("SELECT * FROM users WHERE nickname = '{$name}' AND pass = '{$pwd}'");
 
         return !empty($the_result_array) ? array_shift($the_result_array) : false;
 
@@ -88,6 +87,41 @@ class User {
         $object_properties = get_object_vars($this);
 
         return array_key_exists($the_attribute, $object_properties);
+
+    }
+
+
+    public function create (){
+
+        global $database;
+
+        // $sql = "INSERT INTO users (nickname, pass, first_name, last_name) VALUES ('";
+        // $sql .= $database->escape_string($this->username) . "', '";
+        // $sql .= $database->escape_string($this->password) . "', '";
+        // $sql .= $database->escape_string($this->first_name) . "', '";
+        // $sql .= $database->escape_string($this->last_name) . "')";
+
+        $sql = "INSERT INTO users SET nickname ='".$database->escape_string($this->username)."', pass='".$database->escape_string($this->password)."', first_name='".$database->escape_string($this->first_name)."', last_name='".$database->escape_string($this->last_name)."'";
+        
+        
+        
+
+        if($database->query($sql)){
+
+            $this->id = $database->the_insert_id();
+
+            echo "Object was created!";
+
+            return true;
+
+            
+
+        } else {
+
+            echo "Object was NOT created!";
+            return false;
+
+        }
 
     }
 
