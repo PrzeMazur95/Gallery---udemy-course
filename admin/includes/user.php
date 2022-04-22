@@ -4,8 +4,8 @@ class User {
 
 
     public $id;
-    public $username;
-    public $password;
+    public $nickname;
+    public $pass;
     public $first_name;
     public $last_name;
     
@@ -61,12 +61,12 @@ class User {
         $the_object = new self;
 
         // $the_object->id=$user_found['id'];
-        // $the_object->username=$user_found['username'];
-        // $the_object->password=$user_found['password'];
+        // $the_object->nickname=$user_found['nickname'];
+        // $the_object->pass=$user_found['pass'];
         // $the_object->first_name=$user_found['first_name'];
         // $the_object->last_name=$user_found['last_name'];
 
-        //rozdziela otrzymaną tablicę (wyszuakny z DB) na key+value - username - karol
+        //rozdziela otrzymaną tablicę (wyszuakny z DB) na key+value - nickname - karol
         //wysyła key do następnej metody, która sprawza,czy dana klasa posada taki atrybut
         //jeśeli posiada, przypisuje do tego atrybutu value
 
@@ -96,12 +96,12 @@ class User {
         global $database;
 
         // $sql = "INSERT INTO users (nickname, pass, first_name, last_name) VALUES ('";
-        // $sql .= $database->escape_string($this->username) . "', '";
-        // $sql .= $database->escape_string($this->password) . "', '";
+        // $sql .= $database->escape_string($this->nickname) . "', '";
+        // $sql .= $database->escape_string($this->pass) . "', '";
         // $sql .= $database->escape_string($this->first_name) . "', '";
         // $sql .= $database->escape_string($this->last_name) . "')";
 
-        $sql = "INSERT INTO users SET nickname ='".$database->escape_string($this->username)."', pass='".$database->escape_string($this->password)."', first_name='".$database->escape_string($this->first_name)."', last_name='".$database->escape_string($this->last_name)."'";
+        $sql = "INSERT INTO users SET nickname ='".$database->escape_string($this->nickname)."', pass='".$database->escape_string($this->pass)."', first_name='".$database->escape_string($this->first_name)."', last_name='".$database->escape_string($this->last_name)."'";
         
         
         
@@ -122,6 +122,33 @@ class User {
             return false;
 
         }
+
+    }
+
+
+    public function update(){
+
+        global $database;
+
+
+        $sql = "UPDATE users SET nickname ='".$database->escape_string($this->nickname)."', pass='".$database->escape_string($this->pass)."', first_name='".$database->escape_string($this->first_name)."', last_name='".$database->escape_string($this->last_name)."' WHERE id=".$database->escape_string($this->id)."";
+
+        $database->query($sql);
+
+        return (mysqli_affected_rows($database->connection) == 1) ? true : false ;
+
+    }
+
+
+    public function delete(){
+
+        global $database;
+
+        $sql = "DELETE FROM users WHERE id =".$database->escape_string($this->id)." LIMIT 1;";
+
+        $database->query($sql);
+
+        return (mysqli_affected_rows($database->connection) == 1) ? true : false;
 
     }
 
