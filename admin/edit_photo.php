@@ -27,6 +27,9 @@ redirect("photos.php");
             $photo->alternate_text = $_POST['alternate_text'];
             $photo->description = $_POST['description'];
 
+
+            $photo->save();
+
         }
 
     }
