@@ -52,14 +52,14 @@
 
                                     <div class="pictures_link">
 
-                                        <a href="">Delete</a>
+                                        <a href="delete_photo.php/?id=<?php echo $Photo->id;?>">Delete</a>
                                         <a href="">Edit</a>
                                         <a href="">View</a>
 
                                     </div>
                             
                                 </td>
-                                <td><?php echo $Photo->photo_id; ?></td>
+                                <td><?php echo $Photo->id; ?></td>
                                 <td><?php echo $Photo->filename; ?></td>
                                 <td><?php echo $Photo->tittle; ?></td>
                                 <td><?php echo $Photo->size; ?></td>
