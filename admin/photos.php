@@ -48,7 +48,17 @@
                         foreach ($Photos as $Photo) : ?>
 
                             <tr>
-                                <td><img src="<?php echo $Photo->picture_path();   ?>" class="img-thumbnail" alt=""></td>
+                                <td><img src="<?php echo $Photo->picture_path();   ?>" class="img-thumbnail" alt="">
+
+                                    <div class="pictures_link">
+
+                                        <a href="">Delete</a>
+                                        <a href="">Edit</a>
+                                        <a href="">View</a>
+
+                                    </div>
+                            
+                                </td>
                                 <td><?php echo $Photo->photo_id; ?></td>
                                 <td><?php echo $Photo->filename; ?></td>
                                 <td><?php echo $Photo->tittle; ?></td>
