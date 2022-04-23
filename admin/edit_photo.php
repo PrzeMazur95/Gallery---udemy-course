@@ -10,6 +10,34 @@
 <?php 
 
 
+if(empty($_GET['id'])){
+
+redirect("photos.php");
+
+} else {
+
+    $photo = Photo::find_by_id($_GET['id']);
+
+    if(isset($_POST['update'])){
+
+        if($photo){
+
+            $photo->tittle = $_POST['tittle'];
+            $photo->caption = $_POST['caption'];
+            $photo->alternate_text = $_POST['alternate_text'];
+            $photo->description = $_POST['description'];
+
+        }
+
+    }
+    
+
+}
+
+
+
+
+
 ?>
 
 
@@ -46,28 +74,29 @@
 
                 <div class="form-group">
 
-                    <input type="text" name="tittle" class="form-control">
+                <label for="tittle">Tittle</label>
+                    <input type="text" name="tittle" class="form-control" value="<?php echo $photo->tittle; ?>">
 
                 </div>
 
                 <div class="form-group">
 
                 <label for="caption">Caption</label>
-                <input type="text" name="caption" class="form-control">
+                <input type="text" name="caption" class="form-control"value="<?php echo $photo->caption; ?>">
 
                 </div>
 
                 <div class="form-group">
 
                     <label for="caption">Alternate Text</label>
-                    <input type="text" name="alternate_text" class="form-control">
+                    <input type="text" name="alternate_text" class="form-control"value="<?php echo $photo->alternate_text; ?>">
 
                 </div>
 
                 <div class="form-group">
 
                     <label for="caption">Description</label>
-                    <textarea class="form-control" name="description" id="" cols="30" rows="10"></textarea>
+                    <textarea class="form-control" name="description" id="" cols="30" rows="10"value=""><?php echo $photo->description; ?></textarea>
 
                 </div>
 
