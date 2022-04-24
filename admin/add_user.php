@@ -9,9 +9,27 @@
 
 <?php 
 
+$user = new User();
+
 if(isset($_POST['create'])){
 
+    if($user){
 
+        $user->nickname = $_POST['nickname'];
+        $user->first_name = $_POST['first_name'];
+        $user->last_name = $_POST['last_name'];
+        $user->pass = $_POST['pass'];
+        // print_r( $_FILES['user_image']);
+
+        $user->set_file($_FILES['user_image']);
+
+           
+        $user->save_user_and_image();
+
+
+        
+
+    }
 
 }
 
@@ -83,7 +101,7 @@ if(isset($_POST['create'])){
 
                 <div class="form-group">
 
-                <label for="username">Username</label>
+                <label for="nicknae">Username</label>
                     <input type="text" name="nickname" class="form-control">
 
                 </div>
@@ -103,8 +121,8 @@ if(isset($_POST['create'])){
                 </div>
                 <div class="form-group">
 
-                    <label for="password">Password</label>
-                    <input type="text" name="pass" class="form-control">
+                    <label for="pass">Password</label>
+                    <input type="password" name="pass" class="form-control">
 
                 </div>
 
