@@ -9,7 +9,11 @@
 
 <?php 
 
+if(isset($_POST['create'])){
 
+
+
+}
 
 
 // $user = user::find_by_id($_GET['id']);
@@ -69,6 +73,13 @@
         <form action="" method="post" enctype="multipart/form-data">
 
             <div class="col-md-6 col-md-offset-3">
+
+                <div class="form-group">
+
+                <label for="picture">Add photo</label>
+                    <input type="file" name="user_image">
+
+                </div>
 
                 <div class="form-group">
 
