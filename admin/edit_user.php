@@ -21,28 +21,45 @@ $user = User::find_by_id($_GET['id']);
 
     if(isset($_POST['update'])){
 
-        if($photo){
+        if($user){
 
-            $photo->tittle = $_POST['tittle'];
-            $photo->caption = $_POST['caption'];
-            $photo->alternate_text = $_POST['alternate_text'];
-            $photo->description = $_POST['description'];
+            $user->nickname = $_POST['nickname'];
+            $user->first_name = $_POST['first_name'];
+            $user->last_name = $_POST['last_name'];
+            $user->password = $_POST['pass'];
 
+            if(empty($_FILES['user_image'])){
 
-            $user->save();
+                $user->save();
+
+            } else {
+                
+                $user->set_file($_FILES['user_image']);
+
+                $user->upload_photo();
+
+                $user->save();
+
+                redirect("edit_user.php?id={$user->id}");
+
+            }
+
+            
 
         }
 
     }
 
+    if(isset($_POST['delete'])){
 
-  
+        if($user){
 
+            $user->delete();
+            redirect("users.php");
 
+        }
 
-
-
-
+    }
 
 
 ?>
@@ -74,9 +91,19 @@ $user = User::find_by_id($_GET['id']);
                     Add new User
                 </h1>
 
+
+                <div class="col-md-6">
+
+                    <img src="<?php echo $user->image_path_placeholder(); ?> " class="img-responsive" alt="">
+
+
+                </div>
+
         <form action="" method="post" enctype="multipart/form-data">
 
-            <div class="col-md-6 col-md-offset-3">
+        
+
+            <div class="col-md-6">
 
                 <div class="form-group">
 
@@ -88,33 +115,35 @@ $user = User::find_by_id($_GET['id']);
                 <div class="form-group">
 
                 <label for="nicknae">Username</label>
-                    <input type="text" name="nickname" class="form-control">
+                    <input type="text" name="nickname" class="form-control" value="<?php echo $user->nickname; ?>">
 
                 </div>
 
                 <div class="form-group">
 
                 <label for="firstname">First Name</label>
-                <input type="text" name="first_name" class="form-control">
+                <input type="text" name="first_name" class="form-control" value="<?php echo $user->first_name; ?>">
 
                 </div>
 
                 <div class="form-group">
 
                     <label for="lastname">Last Name</label>
-                    <input type="text" name="last_name" class="form-control">
+                    <input type="text" name="last_name" class="form-control" value="<?php echo $user->last_name; ?>">
 
                 </div>
                 <div class="form-group">
 
                     <label for="pass">Password</label>
-                    <input type="password" name="pass" class="form-control">
+                    <input type="password" name="pass" class="form-control" value="<?php echo $user->pass ?>">
 
                 </div>
 
                 <div class="form-group">
 
-                    <input type="submit" name="update" class="btn btn-primary">
+                    <input type="submit" name="update" class="btn btn-primary" value="Update">
+
+                    <input type="submit" name="delete" class="btn btn-danger pull-right" value="Delete">
 
                 </div>
 
