@@ -1,4 +1,5 @@
 <?php include("includes/header.php"); ?>
+<?php include("includes/photo_library_modal.php"); ?>
 
 <?php if(!$session->is_signed_in()){
 
@@ -94,7 +95,7 @@ $user = User::find_by_id($_GET['id']);
 
                 <div class="col-md-6">
 
-                    <img src="<?php echo $user->image_path_placeholder(); ?> " class="img-responsive" alt="">
+                    <a href="#" data-toggle="modal" data-target="#photo-library"><img class="img-responsive" src="<?php echo $user->image_path_placeholder(); ?> " class="img-responsive" alt=""></a>
 
 
                 </div>
