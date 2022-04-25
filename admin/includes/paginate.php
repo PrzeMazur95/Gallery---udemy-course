@@ -31,7 +31,7 @@ class Paginate {
 
     public function page_total(){
 
-        return celil($this->items_total_count/$this->items_per_page);
+        return ceil($this->items_total_count/$this->items_per_page);
 
     }
 
