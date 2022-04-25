@@ -144,7 +144,9 @@ $user = User::find_by_id($_GET['id']);
 
                     <input type="submit" name="update" class="btn btn-primary" value="Update">
 
-                    <input type="submit" name="delete" class="btn btn-danger pull-right" value="Delete">
+                    <a id ="user-id" class="btn btn-danger pull-right" href="delete_user.php?id=<?php echo $user->id; ?>">Delete</a>
+
+                    <!-- <input id="user-id" type="submit" name="delete" class="btn btn-danger pull-right" value="Delete"> -->
 
                 </div>
 
