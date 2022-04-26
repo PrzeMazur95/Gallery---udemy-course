@@ -32,6 +32,9 @@ $user = User::find_by_id($_GET['id']);
             if(empty($_FILES['user_image'])){
 
                 $user->save();
+                $session->message("The user {$user->nickname} has been updated!");
+                redirect("users.php");
+                
 
             } else {
                 
@@ -41,7 +44,10 @@ $user = User::find_by_id($_GET['id']);
 
                 $user->save();
 
-                redirect("edit_user.php?id={$user->id}");
+                $session->message("The user {$user->nickname} has been updated!");
+
+                // redirect("edit_user.php?id={$user->id}");
+                redirect("users.php");
 
             }
 
