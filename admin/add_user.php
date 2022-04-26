@@ -27,8 +27,11 @@ if(isset($_POST['create'])){
         // $user->save_user_and_image();
         $user->upload_photo();
 
+        $session->message("The {$user->nickname} has been added!");
+
         $user->save();
 
+        redirect("users.php");
 
         
 

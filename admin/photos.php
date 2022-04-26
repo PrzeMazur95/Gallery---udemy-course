@@ -25,7 +25,7 @@
                 <h1 class="page-header">
                     Photos
                 </h1>
-
+            <p class="bg-success"><?php echo $session->message; ?></p>
             <div class="col-md-12">
 
                 <table class="table table-hover">
