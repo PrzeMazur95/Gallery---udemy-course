@@ -25,7 +25,7 @@ if($user){
 
     $session->message("The user {$user->nickname} has been deleted!");
 
-    $user->delete();
+    $user->delete_photo();
     
     redirect("users.php");
 

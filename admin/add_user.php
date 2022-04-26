@@ -25,6 +25,8 @@ if(isset($_POST['create'])){
 
            
         // $user->save_user_and_image();
+        $user->upload_photo();
+
         $user->save();
 
 
