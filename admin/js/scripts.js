@@ -73,5 +73,11 @@ $("#set_user_image").click(function(){
 
 });
 
+$(".delete_link").click(function(){
+
+return confirm("Are you sure you want to delete?");
+
+});
+
 
 

@@ -63,7 +63,7 @@ $comments = Comment::find_all();
                                 <td><?php echo $comment->author; ?>
                                 <div>
 
-                                    <a href="delete_comment.php?id=<?php echo $comment->id;?>">Delete</a>
+                                    <a class="delete_link" href="delete_comment.php?id=<?php echo $comment->id;?>">Delete</a>
                                     
 
                                 </div>
